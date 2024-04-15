@@ -13,16 +13,13 @@ const Layout = () => {
         headerLargeTitle: true,
         headerTransparent: true,
         headerBlurEffect: 'regular',
-        headerStyle: {
-          backgroundColor: Colors.background,
-        },
         headerSearchBarOptions: {
           placeholder: 'Search',
         },
         headerRight: () => {
           return (
            <TouchableOpacity>
-             <Ionicons name="call" size={24} color={Colors.primary} />
+             <Ionicons name="call-outline" size={24} color={Colors.primary} />
            </TouchableOpacity>
           );
         },
