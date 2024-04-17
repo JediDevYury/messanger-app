@@ -18,7 +18,7 @@ type LocalSearchParams = {
   signin: string
 }
 
-const Page = () => {
+const VerifyByPhone = () => {
   const { signIn } = useSignIn();
   const { signUp, setActive } = useSignUp();
   const { phone, signin } = useLocalSearchParams<LocalSearchParams>()
@@ -90,7 +90,6 @@ const Page = () => {
         signUp!.preparePhoneNumberVerification();
       }
     } catch (err) {
-      console.log('error', JSON.stringify(err, null, 2));
       if (isClerkAPIResponseError(err)) {
         Alert.alert('Error', err.errors[0].message);
       }
@@ -98,7 +97,7 @@ const Page = () => {
   };
 
   useEffect(() => {
-    if (code.length === 6) {
+    if (code.length === CELL_COUNT) {
       if (signin === 'true') {
         verifySignIn();
       } else {
@@ -192,4 +191,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Page;
+export default VerifyByPhone;

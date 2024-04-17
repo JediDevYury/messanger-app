@@ -14,7 +14,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue, withTiming
 } from "react-native-reanimated";
-import SwipeableRow from "@/components/Swipeable";
+import SwippeableRow from "@/components/CallsSwippeableRow";
 import * as Haptics from 'expo-haptics';
 
 const transition = CurvedTransition.delay(100)
@@ -87,7 +87,7 @@ const Calls = () => {
           skipEnteringExitingAnimations
           renderItem={({item, index}) => {
             return (
-             <SwipeableRow onDelete={() => removeCall(item)}>
+             <SwippeableRow onDelete={() => removeCall(item)}>
                <Animated.View style={{
                   flexDirection: 'row',
                   alignItems: 'center',
@@ -143,7 +143,7 @@ const Calls = () => {
                    </View>
                  </Animated.View>
                </Animated.View>
-             </SwipeableRow>
+             </SwippeableRow>
             )
           }}
          />

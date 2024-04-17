@@ -37,18 +37,14 @@ const Page = () => {
         phoneNumber
       });
 
-      console.log(1)
       signUp!.preparePhoneNumberVerification();
 
       setLoading(false);
-      console.log(1)
       router.push(`/verify/${phoneNumber}`);
     }
     catch (e) {
-      console.error(e);
       if(isClerkAPIResponseError(e)) {
         if(e.errors[0].code === 'form_identifier_exists') {
-          console.error('User exists, trying to sign in...');
           await trySignIn()
         }
         else {

@@ -5,11 +5,10 @@ import { RectButton } from 'react-native-gesture-handler';
 
 import Swipeable from 'react-native-gesture-handler/Swipeable';
 import Colors from "@/constants/Colors";
+import {Ionicons} from "@expo/vector-icons";
 
-export default class SwipeableRow extends Component<
- PropsWithChildren<{
-  onDelete: () => void;
- }>
+export default class ChatsSwippeableRow extends Component<
+ PropsWithChildren<{}>
 > {
   private renderRightAction = (
    text: string,
@@ -30,6 +29,12 @@ export default class SwipeableRow extends Component<
        <RectButton
         style={[styles.rightAction, { backgroundColor: color }]}
         onPress={pressHandler}>
+         <Ionicons
+          name={text === "More" ? "ellipsis-horizontal" : 'trash'}
+          size={24}
+          color="white"
+          style={{ paddingTop: 10 }}
+         />
          <Text style={styles.actionText}>{text}</Text>
        </RectButton>
      </Animated.View>
@@ -42,11 +47,12 @@ export default class SwipeableRow extends Component<
   ) => (
    <View
     style={{
-      width: 200,
+      width: 192,
       borderTopRightRadius: 20,
       flexDirection: I18nManager.isRTL ? 'row-reverse' : 'row',
     }}>
-     {this.renderRightAction('Delete', Colors.red, 200, progress)}
+     {this.renderRightAction('More', Colors.lightGray, 192, progress)}
+     {this.renderRightAction('Archive', Colors.muted, 128, progress)}
    </View>
   );
 
@@ -56,7 +62,6 @@ export default class SwipeableRow extends Component<
     this.swipeableRow = ref;
   };
   private close = () => {
-    this.props.onDelete();
     this.swipeableRow?.close();
   };
   render() {
@@ -86,6 +91,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
-    borderRadius: 8,
   },
 });
